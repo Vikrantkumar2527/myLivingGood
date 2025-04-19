@@ -8,7 +8,7 @@ import productRoute from './route/productRoute.js';
 import  cartRoute  from './route/cartRoute.js';
 import orderRoute from './route/orderRoute.js';
 const app=express();
-const port=process.env.PORT;
+const port=process.env.PORT || 4000;
 //configuration
 mongoConfig();
 cloudinaryConf();
