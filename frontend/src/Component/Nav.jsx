@@ -38,9 +38,9 @@ function Nav() {
     window.location.reload();
   }
   return (
-    <div className="flex justify-between p-2 m-4  bg-white size-full">
+    <div className="flex justify-between p-1 sm:p-2 m-4  bg-white size-full">
       <Link to="/">
-        <img className="h-8 w-[128px]" src={assets.logo} alt="logo" />
+        <img className="h-8 w-[60px] sm:w-[128px]" src={assets.logo} alt="logo" />
       </Link>
 
       <div className="hidden  md:flex mx-16 nav-component font-serif">

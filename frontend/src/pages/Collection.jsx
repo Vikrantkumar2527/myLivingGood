@@ -72,7 +72,7 @@ function Collection() {
  
 
   return (
-    <div className="collection flex flex-col sm:flex-row gap-8 sm:gap-20 ml-8">
+    <div className="collection flex flex-col sm:flex-row gap-8 sm:gap-20 ml-2 sm:ml-8">
       <div className="filter my-1 sm:my-8">
         <div className="flex items-center">
              <p className="sm:mb-[1px]">FILTERS</p>
