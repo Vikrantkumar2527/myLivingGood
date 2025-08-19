@@ -146,7 +146,7 @@ function Nav() {
           <NavLink
             onClick={() => setVisible(false)}
             className="p-2 border"
-            to="/blogs"
+            to="/blog"
           >
             BLOGS
           </NavLink>
