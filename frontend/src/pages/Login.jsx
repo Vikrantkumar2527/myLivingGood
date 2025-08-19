@@ -149,7 +149,7 @@ function Login() {
             <button className={`bg-black text-white text-sm px-6 py-1 ${status==='login'?'block':'hidden'}`}>Sign in</button>
             <button className={`bg-black text-white text-sm px-6 py-1 ${status==='signUp'?'block':'hidden'}`}>Create</button>
         </div>
-        <a href={`https://mylivinggood-backend.onrender.com/auth/google`}>
+        <a href={`https://mylivinggood-backend.onrender.com/api/user/google`}>
         <div className="border border-black flex p-2 items-center gap-6 rounded mt-4 cursor-pointer">
           <i class="fa-brands fa-google"></i>
           <p>Continue with google</p>
