@@ -9,7 +9,7 @@ userRoute.post('/register',register);
 userRoute.post('/verify/:email',verification);
 userRoute.post('/admin',adminLogin)
 userRoute.get("/google/callback",googleController);
-userRoute.get("/facebook",facebookControler);
+userRoute.get("/facebook/callback",facebookControler);
 userRoute.get("/allUsers",authMid,getUsers)
 
 export default userRoute;
