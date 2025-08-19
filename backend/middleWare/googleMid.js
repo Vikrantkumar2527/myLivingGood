@@ -6,7 +6,7 @@ let googleStrategy= function(passport){
     passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://mylivinggoodfrontend.onrender.com/api/user/google",
+    callbackURL: "https://mylivinggood-backend.onrender.com/api/user/google",
     passReqToCallback   : true
   },
   async function(request,accessToken, refreshToken, profile, done) {
