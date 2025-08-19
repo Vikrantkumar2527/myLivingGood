@@ -25,8 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/user',userRoute);
 app.use("/api/product",productRoute)
-app.use("/api/cart",cartRoute)
-app.use("/api/order",orderRoute)
+
 
 
 //google get
