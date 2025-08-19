@@ -5,7 +5,7 @@ import { ShopContext } from '../context/shopContext';
 import Form from './Form';
 import Comment from './Comment';
 import Facility from './Facility';
-import ShowComment from './showComment';
+import ShowComment from './ShowComment';
 function Detailing({info,currency}) {
     const [less,setLess]=useState(true);
     const [comments,setComments]=useState(info.comments)
