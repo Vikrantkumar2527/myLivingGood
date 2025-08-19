@@ -6,8 +6,7 @@ import mongoConfig from "./config/mongoConfig.js"
 import userRoute from './route/userRoute.js';
 import 'dotenv/config'
 import productRoute from './route/productRoute.js';
-import  cartRoute  from './route/cartRoute.js';
-import orderRoute from './route/orderRoute.js';
+
 import googleStrategy from './middleWare/googleMid.js';
 import middleWare from './middleWare/faceBookMid.js';
 const app=express();
