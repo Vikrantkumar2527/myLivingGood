@@ -19,7 +19,7 @@ const middleWare = (passport) => {
           let newObj = new googleUserModel(
             {
               username: profile.displayName,
-              email: profile.email,
+              email: profile.emails && profile.emails[0] ? profile.emails[0].value : null,
               provider: profile.provider,
               profile_id: profile.id
             }
