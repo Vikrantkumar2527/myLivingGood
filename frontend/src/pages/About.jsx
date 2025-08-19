@@ -2,38 +2,29 @@ import React from "react";
 import Title1 from "../Component/Title1";
 import { assets } from "../assets/frontend_assets/assets";
 import Subscibe from "../Component/Subscribe"
+import AboutImage from "../Component/AboutImage";
 function About() {
   return (
-    <div className="m-0 sm:m-8 ">
+    <div className="mt-36">
       <div className="flex">
         <Title1 text1={"ABOUT"} text2={"US"} />
       </div>
-      <div className="flex flex-col text-center sm:flex-row  gap-4 mt-5 ">
-        <img className="h-80 w-96" src={assets.about_img} alt="" />
-        <div className="p-5 text-gray-400">
-          <p className="mb-4">
-            Forever Was Born Out Of A Passion For Innovation And A Desire To
-            Revolutionize The Way People Shop Online. Our Journey Began With A
-            Simple Idea: To Provide A Platform Where Customers Can Easily
-            Discover, Explore, And Purchase A Wide Range Of Products From The
-            Comfort Of Their Homes.
-          </p>
-          <p className="mb-4">
-            Since Our Inception, We've Worked Tirelessly To Curate A Diverse
-            Selection Of High-Quality Products That Cater To Every Taste And
-            Preference. From Fashion And Beauty To Electronics And Home
-            Essentials, We Offer An Extensive Collection Sourced From Trusted
-            Brands And Suppliers.
-          </p>
-          <p className="font-bold">Our Mission</p>
-          <p>
-            Our Mission At Forever Is To Empower Customers With Choice,
-            Convenience, And Confidence. We're Dedicated To Providing A Seamless
-            Shopping Experience That Exceeds Expectations, From Browsing And
-            Ordering To Delivery And Beyond
-          </p>
+      <div className="mt-2 ">
+        <div className="sm:text-center border border-black py-4 px-4  sm:px-12 rounded">
+          <h1 className="font-bold text-[30px]">My Living Good</h1>
+          <div className="mt-4 text-[grey]">
+            Living a good life involves finding a balance between work, personal growth, and relationships. It's about pursuing passions, staying curious, and continuously learning. Good living also includes maintaining physical and mental health, practicing gratitude, and finding joy in everyday moments. Building strong connections with family and friends, contributing to the community, and helping others add meaning to life. It's essential to live authentically, embracing both successes and failures as part of the journey. Ultimately, living well means being present, appreciating life’s simple pleasures, and striving for personal fulfillment and happiness.
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 ">
+              <AboutImage classextra={"users"} text={"200+ Students connected"}/>
+              <AboutImage classextra={"house"} text={"40+ Rentals Available"}/>
+              <AboutImage classextra={"bed"} text={"200+ Beds Available"}/>
+              <AboutImage classextra={"location-dot"} text={"10+ Area covered"}/>
+          </div>
+          
         </div>
       </div>
+      {/* second section */}
       <div className="mt-16 mb-4">
         <Title1 text1={"WHY"} text2={"CHOOSE US"} />
       </div>
@@ -41,10 +32,9 @@ function About() {
       <div className="flex w-full mb-20">
         <div className="w-1/2 sm:w-1/3 border border-black h-52 flex  items-center p-2 sm:p-20">
           <div className=" text-center ">
-            <p className="font-bold mb-4 text-sm sm:text-xl">QUALITY ASSURANCE:</p>
-            <p className="text-[10px] sm:text-[12px] font-light text-gray-400">
-              We Meticulously Select And Vet Each Product To Ensure It Meets Our
-              Stringent Quality Standards.
+            <p className="font-bold mb-4 text-sm sm:text-xl">AFFORDABLE OPTIONS:</p>
+            <p className="text-[10px]  sm:text-[15px] font-light text-gray-400">
+              Pocket-friendly stays that perfectly fit a student’s budget.
             </p>
           </div>
         </div>
@@ -52,9 +42,9 @@ function About() {
 
         <div className="w-1/3 border border-black flex h-52 items-center p-[52px] hidden sm:block">
           <div className=" text-center">
-            <p className="font-bold mb-4 text-sm sm:text-xl">CONVENIENCE:</p>
-            <p className="text-[12px] font-light text-gray-400">
-              With Our User-Friendly Interface And Hassle-Free Ordering Process, Shopping   Has Never Been Easier
+            <p className="font-bold mb-4 text-sm sm:text-xl">VERIFIED HOSTELS & PGs:</p>
+            <p className="text-[15px] font-light text-gray-400">
+              Every listing is carefully verified for quality and safety.
             </p>
           </div>
         </div>

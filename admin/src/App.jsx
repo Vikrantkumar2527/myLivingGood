@@ -5,18 +5,18 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "./componets/NavBar";
 import SlideBar from "./componets/slideBar";
 import AddItem from "./pages/addItem";
-import Orders from "./pages/Orders";
+import User from "./pages/User";
 import List from "./pages/list";
 import Login from "./componets/Login";
 
 
 export const backendUrl=import.meta.env.VITE_BACKEND_URL;
-export const currency="$";
+export const currency="₹";
 
 function App() {
-const [token, setToken] = useState(localStorage.getItem("token")?localStorage.getItem("token"):"");
+const [token, setToken] = useState(localStorage.getItem("admintoken")?localStorage.getItem("admintoken"):"");
   useEffect(()=>{
-    localStorage.setItem("token",token)
+    localStorage.setItem("admintoken",token)
   },[token])
   
   return (
@@ -31,7 +31,7 @@ const [token, setToken] = useState(localStorage.getItem("token")?localStorage.ge
             <SlideBar />
             <Routes>
               <Route path="/add" element={<AddItem token={token} />} />
-              <Route path="/orders" element={<Orders token={token}/>} />
+              <Route path="/user" element={<User token={token}/>} />
               <Route path="/list" element={<List token={token} />} />
             </Routes>
           </div>

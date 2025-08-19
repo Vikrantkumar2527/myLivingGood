@@ -1,0 +1,16 @@
+   
+   .star {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-image: url('../assets/frontend_assets/star.png'); /* Your sprite image URL */
+      background-size: 40px 20px; /* Total sprite size: 2 stars horizontally */
+    }
+
+    .full {
+      background-position: 0 0; /* Show full star */
+    }
+
+    .empty {
+      background-position: -20px 0; /* Show empty star */
+    }

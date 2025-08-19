@@ -4,12 +4,11 @@ import Product from "../Component/Product";
 import { assets } from "../assets/frontend_assets/assets";
 
 function Collection() {
-  const { products, currency,search,setSearch } = useContext(ShopContext);
+  const { products, currency,search,setSearch,showSearch } = useContext(ShopContext);
   const [collections, setCollections] = useState([]);
   const [visible, setVisible]=useState(false);
   const [catogries,setCatogries]=useState([]);
-  const [subcatogries,setSubCatogries]=useState([]);
-  const [sortType,setSortType]=useState("revelant");
+  const [type,setType]=useState([]);
 
 //   set catogries array
  function catogrieFun(e){
@@ -21,12 +20,12 @@ function Collection() {
     }
  }
  //setting subcatogry array
- function subCatogrieFun(e){
-    if(subcatogries.includes(e.target.value)){
-       setSubCatogries(subcatogries.filter((ele)=>ele!=e.target.value))
+ function typeFun(e){
+    if(type.includes(e.target.value)){
+       setType(type.filter((ele)=>ele!=e.target.value))
     }
     else{
-        setSubCatogries((pre)=>[...pre,e.target.value])
+        setType((pre)=>[...pre,e.target.value])
     }
  }
  
@@ -38,21 +37,11 @@ function Collection() {
       productsCopy=productsCopy.filter((ele)=>ele.name.toLowerCase().includes(search.toLowerCase()))
   }
     if(catogries.length>0){
-        productsCopy=productsCopy.filter((ele)=>catogries.includes(ele.category));
+        productsCopy=productsCopy.filter((ele)=>catogries.includes(ele.gender));
     }
-    if(subcatogries.length>0){
-        productsCopy=productsCopy.filter((ele)=>subcatogries.includes(ele.subCategory));
+    if(type.length>0){
+        productsCopy=productsCopy.filter((ele)=>type.includes(ele.typeProperty));
     }
-    switch (sortType){
-      case "low-high":
-       productsCopy.sort((a,b)=>a.price-b.price)
-       break;
-       case "high-low":
-        productsCopy.sort((a,b)=>b.price-a.price)
-         break;
-       default:
-         return setCollections(productsCopy);
-        }
   
     setCollections(productsCopy);
  }
@@ -66,13 +55,15 @@ function Collection() {
 
   useEffect(() => {
     filterProudcts()
-  }, [catogries,subcatogries,search,sortType,products]);
+  }, [catogries,type,search,products]);
 
  
  
 
   return (
-    <div className="collection flex flex-col sm:flex-row gap-8 sm:gap-20 ml-2 sm:ml-8">
+    <>
+    
+    <div className={`collection flex flex-col sm:flex-row gap-8 sm:gap-20 ml-2 sm:ml-8  ${showSearch?"mt-[1px]":"mt-[120px]"}`}>
       <div className="filter my-1 sm:my-8">
         <div className="flex items-center">
              <p className="sm:mb-[1px]">FILTERS</p>
@@ -85,32 +76,32 @@ function Collection() {
           <div className="filter1 border p-1 sm:p-4 w-60 mt-2">
             <p className="text-gray-700">CATEGORIES</p>
             <div className="flex">
-              <input type="checkbox" checked={catogries.includes("MEN")} onChange={catogrieFun} value="MEN" />
-              <p className="mx-2 text-gray-500">Men</p>
+              <input type="checkbox" checked={catogries.includes("BOYS")} onChange={catogrieFun} value="BOYS" />
+              <p className="mx-2 text-gray-500">Boys</p>
             </div>
             <div className="flex">
-              <input type="checkbox" checked={catogries.includes("WOMEN")} onChange={catogrieFun} value="WOMEN" />
-              <p className="mx-2 text-gray-500">Women</p>
+              <input type="checkbox" checked={catogries.includes("GIRLS")} onChange={catogrieFun} value="GIRLS" />
+              <p className="mx-2 text-gray-500">Girls</p>
             </div>
             <div className="flex">
-              <input type="checkbox" checked={catogries.includes("KIDS")} onChange={catogrieFun} value="KIDS" />
-              <p className="mx-2 text-gray-500">Kids</p>
+              <input type="checkbox" checked={catogries.includes("BOTH")} onChange={catogrieFun} value="BOTH" />
+              <p className="mx-2 text-gray-500">Both</p>
             </div>
           </div>
           {/* second filter box */}
           <div className=" border p-4 w-60 mt-2">
             <p className="text-gray-700">TYPE</p>
             <div className="flex">
-              <input onChange={subCatogrieFun} type="checkbox" value="TOPWEAR" />
-              <p className="mx-2 text-gray-500">Topwear</p>
+              <input onChange={typeFun} checked={type.includes("HOSTEL")} type="checkbox" value="HOSTEL" />
+              <p className="mx-2 text-gray-500">HOSTEL</p>
             </div>
             <div className="flex">
-              <input onChange={subCatogrieFun} type="checkbox" value="BOTTOMWEAR" />
-              <p className="mx-2 text-gray-500">Bottomwear</p>
+              <input onChange={typeFun} checked={type.includes("PG")} type="checkbox" value="PG" />
+              <p className="mx-2 text-gray-500">PG</p>
             </div>
             <div className="flex">
-              <input onChange={subCatogrieFun} type="checkbox" value="WINTERWEAR" />
-              <p className="mx-2 text-gray-500">Winterwear</p>
+              <input onChange={typeFun} checked={type.includes("ROOM")} type="checkbox" value="ROOM" />
+              <p className="mx-2 text-gray-500">ROOM</p>
             </div>
           </div>
         </div>
@@ -126,35 +117,26 @@ function Collection() {
               <div className="hidden sm:block h-[2px] w-[20px] bg-black"></div>
             </div>
           </div>
-          <div className="lthsec">
-            <select
-              value={sortType}
-              onChange={(e)=>setSortType(e.target.value)}
-              className="border border-black w-28 sm:w-44 h-8 text-gray-500 text-sm"
-            >
-              <option value="revelant">Sort by: Revelant</option>
-              <option value="low-high">Sort by: Low to High</option>
-              <option value="high-low">Sort by: High to Low</option>
-            </select>
-          </div>
         </div>
         {/* show all products */}
-        <div className="grid gap-4 p-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-          {collections.map((ele, idx) => {
+        <div className="grid gap-4 p-4 grid-cols-1 sm:grid-cols-2">
+          {collections.length>0?collections.map((ele, idx) => {
             return (
-              <Product
+              <Product 
                 key={idx}
                 name={ele.name}
                 image={ele.image[0]}
-                price={ele.price}
+                price={ele.priceTwoSetter}
                 id={ele._id}
                 currency={currency}
+                location={ele.location}
               />
             );
-          })}
+          }):<div className="mt-12 font-bold text-xl text-orange-600">No data found </div>}
         </div>
       </div>
     </div>
+    </>
   );
 }
 

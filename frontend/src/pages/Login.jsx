@@ -9,7 +9,9 @@ function Login() {
     const [username,setUsername]=useState("")
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
-    const {backendUrl,token,setToken,user,setUser}=useContext(ShopContext)
+    const {backendUrl,token,setToken,user,setUser,setId}=useContext(ShopContext)
+    console.log(backendUrl);
+    
     const [status,setStatus]=useState('login')
     async function handleSubmit(e){
       try {
@@ -47,6 +49,9 @@ function Login() {
                   })
                   const tokeen=response.data.token
                   const userN=response.data.username;
+                  const id=response.data.id;
+                  setId(id);
+                  localStorage.setItem("id",id);
                   setToken(tokeen)
                   localStorage.setItem("token",tokeen)
                   setUser(userN)
@@ -77,6 +82,7 @@ function Login() {
             toast.success(`${response.data.message}`)
             const tokeen=response.data.token
             const userN=response.data.username;
+            setId(response.data.id);
             setToken(tokeen)
             localStorage.setItem("token",tokeen)
             setUser(userN)
@@ -96,9 +102,10 @@ function Login() {
       }
         
     }
+   
   return (
     <form onSubmit={handleSubmit}>
-    <div className="mt-8 flex items-center justify-center w-full">
+    <div className="mt-16 flex items-center justify-center w-full">
       <div className="w-2/3 md:w-1/4 p-2 my-8 ">
         <div className=" flex gap-2 items-center justify-center my-4">
           <p className={`prata-regular text-[34px] ${status==='login'?'block':'hidden'} `}>Login</p>
@@ -142,7 +149,18 @@ function Login() {
             <button className={`bg-black text-white text-sm px-6 py-1 ${status==='login'?'block':'hidden'}`}>Sign in</button>
             <button className={`bg-black text-white text-sm px-6 py-1 ${status==='signUp'?'block':'hidden'}`}>Create</button>
         </div>
-        
+        <a href={`http://localhost:4000/auth/google`}>
+        <div className="border border-black flex p-2 items-center gap-6 rounded mt-4 cursor-pointer">
+          <i class="fa-brands fa-google"></i>
+          <p>Continue with google</p>
+        </div>   
+        </a>
+        <a href={`http://localhost:4000/auth/facebook`}>
+          <div className="border border-black flex p-2 items-center gap-6 rounded mt-4 cursor-pointer">
+            <i class="text-[#1877F2] mt-1 fa-brands fa-square-facebook"></i>
+            <p className="text-[#1877F2]">Continue with Facebook</p>
+          </div>
+        </a>
       </div>
     </div>
     </form>

@@ -12,21 +12,21 @@ function SlideBar() {
                  <div className='flex  gap-3 items-center border p-2 '>
                     
                     <img className='h-5 w-5' src={assets.add_icon} alt="add Icon" />
-                    <p className='text-sm hidden sm:block'>Add Items</p>
+                    <p className='text-sm hidden sm:block'>Add Property</p>
                  </div>
                  </NavLink>
                  <NavLink to="/list">
                  <div className='flex  gap-3 items-center border p-2 '>
                     
                     <img className='h-5 w-5' src={assets.order_icon} alt="" />
-                    <p className='text-sm hidden sm:block'>List Items</p>
+                    <p className='text-sm hidden sm:block'>All Property</p>
                  </div>
                  </NavLink>
-                 <NavLink to="/orders">
+                 <NavLink to="/user">
                  <div className='flex  gap-3 items-center border p-2 '>
                     
                     <img className='h-5 w-5' src={assets.order_icon} alt="add Icon" />
-                    <p className='text-sm hidden sm:block'>Orders</p>
+                    <p className='text-sm hidden sm:block'>Users Data</p>
                  </div>
                  </NavLink>
             </div> 

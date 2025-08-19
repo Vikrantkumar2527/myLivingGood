@@ -2,9 +2,11 @@ import userModel from "../model/userModel.js";
 import bcrypt, { hash } from 'bcrypt';
 import jwt from 'jsonwebtoken'
 import validator from "validator";
+import passport from "passport";
 import dotenv from 'dotenv'
 import sendEmail from "../Emailverfication/emailverf.js";
 import tempUserModel from "../model/tempuserModel.js";
+import googleUserModel from "../model/googleuser.js";
 dotenv.config();
 //generate token
 const createToken =(id)=>{
@@ -35,7 +37,8 @@ const login = async (req, res) => {
         success: true,
         message: "Welcome to Forever!",
         token,
-        username:user.username
+        username:user.username,
+        id:user._id
       });
     } else {
       return res.json({
@@ -186,6 +189,7 @@ const verification = async (req, res) => {
       message: "User Register Successfull",
       username:newUser.username,
       token: token,
+      id:newUser._id
     });
   } 
   
@@ -207,13 +211,16 @@ const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
     
+    
     if (email == process.env.ADMIN_EMAIL && password == process.env.ADMIN_PASS) {
+      
       const token = jwt.sign(
         {
           email:process.env.ADMIN_EMAIL,
           password:process.env.ADMIN_PASS
         }
         , process.env.TOKEN_SCERET);
+        console.log(token)
       return res.json({
         token,
         message: "You are Logged in as Admin!",
@@ -236,4 +243,51 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { login, register,verification ,adminLogin};
+const googleController=(req,res,next)=>{
+      const middleWare=passport.authenticate('google',
+        {session:false},
+        (err,user,info)=>{
+          if(!user || err){
+            return res.redirect("http://localhost:5174/login")
+          }
+          let token=createToken(user._id);
+          let username=user.username;
+          res.redirect(`http://localhost:5174/?token=${token}&username=${username}&id=${user._id}`);
+        }
+      )
+      middleWare(req,res,next);
+}
+
+const facebookControler=async (req,res,next)=>{
+
+  const middleWare=passport.authenticate('facebook',{session:false},(err,user,info)=>{
+   if(!user || err){
+            return res.redirect("http://localhost:5174/login")
+          }
+     const token=createToken(user._id);
+     let username=user.username;
+    //  console.log(token,username)
+    res.redirect(`http://localhost:5174/?token=${token}&username=${username}&id=${user._id}`);
+  })
+  middleWare(req,res,next);
+ 
+
+
+}
+
+//get all user
+
+const getUsers=async (req,res)=>{
+    const user1=await userModel.find({});
+    const user2=await googleUserModel.find({});
+    const allUser=[...user1,...user2];
+    allUser.sort((a,b)=>new Date(b.create_At)-new Date(a.create_At));
+    res.json({
+      success:true,
+      message:"fetch successfull",
+      allUser:allUser
+    })
+
+}
+
+export { login, register,verification ,adminLogin,googleController,facebookControler,getUsers};

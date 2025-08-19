@@ -19,10 +19,11 @@
 
 select,input,textarea{
     border: 2px solid #c2c2c2;
-    outline-color: #C586A5;
+    outline-color: orange;
     border-radius: 4px;
 }
 table, th, td {
     border: 1px solid black;
+    border-radius: 4px;
     border-collapse: collapse;
   }

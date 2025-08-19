@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken"
 import userModel from '../model/userModel.js'
 import env from "dotenv"
+import googleUserModel from "../model/googleuser.js";
 env.config();
 const userAuth=async(req,res,next)=>{
     const  {token}=req.headers;
@@ -13,7 +14,11 @@ const userAuth=async(req,res,next)=>{
     const {id}= jwt.verify(token,process.env.TOKEN_SCERET)
     
     try {
-        const user= await userModel.findById(id);
+        let user= await userModel.findById(id);
+        if(!user){
+            user=await googleUserModel.findById(id);
+        }
+        
         if(!user){
             return res.json({
                 success:false,

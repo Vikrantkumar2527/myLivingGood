@@ -6,17 +6,19 @@ import Nav from "./Component/Nav";
 import Connect from "./pages/Connect"
 import Footer from "./Component/Footer";
 import Search from "./Component/Search";
-import Cart from "./pages/Cart";
+import Blog from "./pages/Blog";
+
 import Login from "./pages/Login";
-import PlaceOrder from "./pages/PlaceOrder";
-import Orders from "./pages/Orders";
+
 import Productdetails from "./pages/Productdetails";
 import { ToastContainer, toast } from 'react-toastify';
+import ScrollToTop from "./Component/ScrollToTop";
 
 function App() {
   return ( 
     <div className="px-8 flex flex-col min-h-screen">
       <ToastContainer />
+        <ScrollToTop/>
        <Nav/>
        <Search/>
        <div className="flex-1">
@@ -26,10 +28,8 @@ function App() {
          <Route path="/collection" element={<Collection/>}/>
          <Route path="/connect" element={<Connect/>}/>
          <Route path="/products/:productId" element={<Productdetails/>}/>
-         <Route path="/cart" element={<Cart/>}/>
+         <Route path="/blog" element={<Blog/>}/>
          <Route path="/login" element={<Login/>}/>
-         <Route path="/place-order" element={<PlaceOrder/>}/>
-         <Route path="/orders" element={<Orders/>}/>
        </Routes>
 
        </div>

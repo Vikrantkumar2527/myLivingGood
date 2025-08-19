@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import "./Nav.css"
 import { assets } from "../assets/frontend_assets/assets";
 import { NavLink, Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -6,7 +7,7 @@ import { ShopContext } from "../context/shopContext";
 function Nav() {
   const navigate=useNavigate();
   const [popup,setPopup]=useState("hidden");
-  const {showSearch,user,setShowSearch,countCartItem,cartCount,setCartCount,cartItems}=useContext(ShopContext);
+  const {showSearch,user,setShowSearch}=useContext(ShopContext);
   const [visible, setVisible] = useState(false);
   const username=String(user).slice(0,2).toUpperCase()
   function handleSearchClick(){
@@ -14,9 +15,6 @@ function Nav() {
     navigate("/collection");
     
   }
-  useEffect(()=>{
-     countCartItem()
-  },[cartItems])
 
   //handle popshow
 
@@ -38,9 +36,10 @@ function Nav() {
     window.location.reload();
   }
   return (
-    <div className="flex justify-between p-1 sm:p-2 m-4  bg-white size-full">
+    <>
+    <div className="Nav fixed left-0 top-0 w-[100%]  px-[20px] py-[5px]  flex justify-between items-center bg-white border">
       <Link to="/">
-        <img className="h-8 w-[60px] sm:w-[128px]" src={assets.logo} alt="logo" />
+        <img className="picture h-[70px] md:h-[100px] w-[80px] sm:w-[128px]" src={assets.logo} alt="logo" />
       </Link>
 
       <div className="hidden  md:flex mx-16 nav-component font-serif">
@@ -56,7 +55,7 @@ function Nav() {
         </div>
         <div className="mx-3">
           <NavLink className="font-medium" to="/collection">
-            COLLECTION
+            EXPLORE-MORE
           </NavLink>
         </div>
         <div className="mx-3">
@@ -64,10 +63,15 @@ function Nav() {
             CONTACT
           </NavLink>
         </div>
+        <div className="mx-3">
+          <NavLink className="font-medium" to="/blog">
+            BLOGS
+          </NavLink>
+        </div>
       </div>
-      <div className="logo flex justify-center items-center gap-4 md:gap-5 ">
+      <div className="logo flex justify-center  gap-4 md:gap-5 ">
         <img className="h-6" onClick={handleSearchClick} src={assets.search_icon} alt="Search bar" />
-        <button onClick={()=>(navigate("/login"))} className={`text-center border ml-1 sm:ml-4 py-1 bg-pink-400 text-white rounded px-2 ${user==''?"block":"hidden"}`}>login</button>
+        <button onClick={()=>(navigate("/login"))} className={`text-center border ml-1 sm:ml-4 py-1 bg-orange-400 text-white rounded px-2 ${user==''?"block":"hidden"}`}>login</button>
         <div className="group relative ">
           <img onClick={handleclick} className={`h-6 ${user==''?"hidden":"block"} cursor-pointer`} src={assets.profile_icon} alt="Search bar" />
           <div className={`${popup} bg-slate-200 text-gray-500 py-3 px-6 rounded absolute top-8 right-1 `}>
@@ -75,18 +79,15 @@ function Nav() {
             <Link to='/login'>
             <p className="cursor-pointer hover:text-black font-bold">PROFILE</p>
             </Link>
-            <Link to="/orders">
-            <p className="cursor-pointer hover:text-black font-bold">ORDERS</p>
-            </Link>
             <p onClick={handleLogout} className={`cursor-pointer hover:text-black font-bold ${user===''?"hidden":"block"}`}>LOGOUT</p>
           </div>
         </div>
-        <Link to="/cart" className="relative">
+        {/* <Link to="/cart" className="relative">
           <img className="h-6" src={assets.cart_icon} alt="Search bar" />
           <p className="absolute top-[10px] left-2 border border-black rounded-full aspect-square bg-black text-white text-[10px] w-4 text-center font-bold">
             {cartCount}
           </p>
-        </Link>
+        </Link> */}
 
         <img
           onClick={() => setVisible(true)}
@@ -100,7 +101,7 @@ function Nav() {
 
       {/* logic of drop down like if visible is true then if drop visible otherwise not */}
       <div
-        className={`absolute  top-0 left-0 bottom-0 overflow-hidden  bg-white ${
+        className={`absolute z-40  top-0 left-0  overflow-hidden  bg-white ${
           visible ? "w-full" : "w-0"
         }`}
       >
@@ -126,7 +127,7 @@ function Nav() {
             className="p-2 border"
             to="/collection"
           >
-            COLLECTION
+            EXPLORE_MORE
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
@@ -142,9 +143,19 @@ function Nav() {
           >
             CONTACT
           </NavLink>
+          <NavLink
+            onClick={() => setVisible(false)}
+            className="p-2 border"
+            to="/blogs"
+          >
+            BLOGS
+          </NavLink>
         </div>
       </div>
+      
     </div>
+    </>
+    
     
   );
 }
