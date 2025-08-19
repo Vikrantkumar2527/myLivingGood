@@ -8,7 +8,7 @@ userRoute.post('/login',login);
 userRoute.post('/register',register);
 userRoute.post('/verify/:email',verification);
 userRoute.post('/admin',adminLogin)
-userRoute.get("/google",googleController);
+userRoute.get("/google/callback",googleController);
 userRoute.get("/facebook",facebookControler);
 userRoute.get("/allUsers",authMid,getUsers)
 

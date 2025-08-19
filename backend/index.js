@@ -22,8 +22,6 @@ middleWare(passport);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/user',userRoute);
-app.use("/api/product",productRoute)
 
 
 
@@ -41,6 +39,9 @@ app.get('/auth/facebook',
     session:false
   }),
 );
+app.use('/api/user',userRoute);
+app.use("/api/product",productRoute)
+
 
 
 
