@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import "./Product.css"
+import "./product.css"
 import { Link } from 'react-router-dom';
 function Product({id,name,image,price,currency,location}) {
     const navigate=useNavigate();
