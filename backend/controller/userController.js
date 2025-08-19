@@ -248,11 +248,11 @@ const googleController=(req,res,next)=>{
         {session:false},
         (err,user,info)=>{
           if(!user || err){
-            return res.redirect("http://localhost:5174/login")
+            return res.redirect("https://mylivinggoodfrontend.onrender.com/login")
           }
           let token=createToken(user._id);
           let username=user.username;
-          res.redirect(`http://localhost:5174/?token=${token}&username=${username}&id=${user._id}`);
+          res.redirect(`https://mylivinggoodfrontend.onrender.com/?token=${token}&username=${username}&id=${user._id}`);
         }
       )
       middleWare(req,res,next);
