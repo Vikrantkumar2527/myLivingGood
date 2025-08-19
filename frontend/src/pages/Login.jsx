@@ -155,7 +155,7 @@ function Login() {
           <p>Continue with google</p>
         </div>   
         </a>
-        <a href={`https://mylivinggood-backend.onrender.com/facebook`}>
+        <a href={`https://mylivinggood-backend.onrender.com/auth/facebook`}>
           <div className="border border-black flex p-2 items-center gap-6 rounded mt-4 cursor-pointer">
             <i class="text-[#1877F2] mt-1 fa-brands fa-square-facebook"></i>
             <p className="text-[#1877F2]">Continue with Facebook</p>

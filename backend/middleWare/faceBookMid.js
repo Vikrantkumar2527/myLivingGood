@@ -5,7 +5,7 @@ const middleWare = (passport) => {
   passport.use(new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:4000/api/user/facebook",
+    callbackURL: "https://mylivinggood-backend.onrender.com/api/user/facebook",
     profileFields: ['id', 'displayName', 'emails']
   },
     async function (accessToken, refreshToken, profile, done) {
