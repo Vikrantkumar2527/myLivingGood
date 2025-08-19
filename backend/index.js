@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //google get
-app.get('/auth/google',
+app.get('/api/user/google',
 passport.authenticate('google', { scope:
       [ 'email', 'profile' ] ,
       session:false
