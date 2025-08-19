@@ -262,12 +262,12 @@ const facebookControler=async (req,res,next)=>{
 
   const middleWare=passport.authenticate('facebook',{session:false},(err,user,info)=>{
    if(!user || err){
-            return res.redirect("http://localhost:5174/login")
+            return res.redirect("https://mylivinggoodfrontend.onrender.com/login")
           }
      const token=createToken(user._id);
      let username=user.username;
     //  console.log(token,username)
-    res.redirect(`http://localhost:5174/?token=${token}&username=${username}&id=${user._id}`);
+    res.redirect(`https://mylivinggoodfrontend.onrender.com/?token=${token}&username=${username}&id=${user._id}`);
   })
   middleWare(req,res,next);
  
