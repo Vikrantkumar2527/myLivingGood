@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import ImageCarousel from './ImageCarousel';
 import { assets } from '../assets/frontend_assets/assets';
 import { ShopContext } from '../context/shopContext';
-import Form from './form';
+import Form from './Form';
 import Comment from './Comment';
 import Facility from './Facility';
 import ShowComment from './showComment';
