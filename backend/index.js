@@ -19,7 +19,15 @@ googleStrategy(passport);  // Bas is line se strategy register ho jaati hai
 middleWare(passport);
 
 //connection 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://mylivinggood.com",
+    "https://www.mylivinggood.com",  
+    "https://mylivinggoodfrontend.onrender.com"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

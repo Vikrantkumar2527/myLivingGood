@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Product({id,name,image,price,currency,location}) {
     const navigate=useNavigate();
     return ( 
-        <div className='product  h-[250px] md:h-[450px]'>
+        <div className='product  '>
         <Link to={`/products/${id}`} target="_blank" rel="noopener noreferrer">
                 <img className='p-img w-[100%] h-[50%]' src={image} alt="" />
                 <div className='p-name mb-3 text-[12px] md:text-[20px] py-2'>{name}</div>
