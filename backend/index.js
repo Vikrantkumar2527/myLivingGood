@@ -23,7 +23,8 @@ app.use(cors({
   origin: [
     "https://mylivinggood.com",
     "https://www.mylivinggood.com",  
-    "https://mylivinggoodfrontend.onrender.com"
+    "https://mylivinggoodfrontend.onrender.com",
+    "https://mylivinggood-admin.onrender.com"
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
